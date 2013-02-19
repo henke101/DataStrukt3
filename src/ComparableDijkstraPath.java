@@ -1,9 +1,9 @@
 import java.security.InvalidParameterException;
 
 
-public class ComparableDijsktraPath extends BusEdge implements Comparable{
+public class ComparableDijkstraPath extends BusEdge implements Comparable{
 
-	ComparableDijsktraPath(int from, int to, double weight, String line) {
+	ComparableDijkstraPath(int from, int to, double weight, String line) {
 		super(from, to, weight, line);
 	}
 
@@ -13,10 +13,10 @@ public class ComparableDijsktraPath extends BusEdge implements Comparable{
 			throw new NullPointerException("Pointer is null");
 		}
 		
-		if (!(obj instanceof ComparableDijsktraPath)) {
+		if (!(obj instanceof ComparableDijkstraPath)) {
 			throw new InvalidParameterException("Not a valid parameter");
 		}
-		ComparableDijsktraPath object = (ComparableDijsktraPath) obj;
+		ComparableDijkstraPath object = (ComparableDijkstraPath) obj;
 		double cmp = (this.weight - object.weight);
 		if (cmp == 0) {
 			return 0;
