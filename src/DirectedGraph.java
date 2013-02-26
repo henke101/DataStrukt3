@@ -2,37 +2,54 @@
 import java.util.*;
 
 public class DirectedGraph<E extends Edge> {
-	protected class ComparableDijkstraPath implements Comparable {
+
+	private int size;
+	protected List<E>[] neighbours;
+	private int nodeAmount;
+	
+	protected class ComparableDijkstraPath<T extends ComparableDijkstraPath> implements Comparable<T> {
 		private int node;
-		private int cost;
+		protected double cost;
 		private List<E> path;
+		private boolean visited;
 		
-		public ComparableDijkstraPath(int node, int cost, List<E> path) {
+		public ComparableDijkstraPath(int node, double cost, List<E> path) {
 			this.node = node;
 			this.cost = cost;
 			this.path = path;
+			this.visited = false;
 		}
 		
-		@SuppressWarnings("unchecked")
 		@Override
-		public int compareTo(Object obj) throws IllegalArgumentException {
-			if (obj == null || !(obj instanceof DirectedGraph.ComparableDijkstraPath)) {
-				throw new IllegalArgumentException();
+		public int compareTo(T obj) throws NullPointerException {
+			if (obj == null) {
+				throw new NullPointerException();
 			}
-			ComparableDijkstraPath object = null;
-			object = (ComparableDijkstraPath) obj;
 			
-			return this.cost - object.cost;
+			// Returns 0 if equal, 1 if this is greater than the object, -1 if it's smaller
+			return (this.cost == obj.cost) ? 0 : ((this.cost > obj.cost) ? 1 : -1);
+		}
+
+		/**
+		 * @return True if visited, false if not
+		 */
+		public boolean isVisited() {
+			return visited;
+		}
+
+		/**
+		 * @param visited, Set visited to true/false
+		 */
+		public void setVisited(boolean visited) {
+			this.visited = visited;
 		}
 		
 	}
 	
-	private int size;
-	protected List<E>[] neighbours;
-
 	@SuppressWarnings("unchecked")
 	public DirectedGraph(int noOfNodes) {
-		neighbours = (List<E>[]) new LinkedList[noOfNodes];
+		nodeAmount = noOfNodes;
+		neighbours = new List[noOfNodes];
 	}
 	
 	public void addEdge(E e) {
@@ -52,6 +69,9 @@ public class DirectedGraph<E extends Edge> {
 	}
 
 	public Iterator<E> shortestPath(int from, int to) {
+		
+//		Integer[] distance = new Integer[nodeAmount];
+		
 /*lägg (startnod, 0, tom väg) i en p-kö
 while kön inte är tom
 (nod, cost, path) = första elementet i p-kön
@@ -66,6 +86,26 @@ för v i p-kön
  * 
  */
 		PriorityQueue<ComparableDijkstraPath> pq = new PriorityQueue<ComparableDijkstraPath>();
+		pq.add(new ComparableDijkstraPath(from, 0, null));
+		ComparableDijkstraPath cdp;
+		while (!pq.isEmpty()) {
+			cdp = pq.peek();
+//			if (node not visited) {
+				if (cdp.node == to) {
+					return cdp.path.iterator();
+				}
+
+				else {
+//					set node to visited;
+					for (E e : neighbours[cdp.node]) {
+//						if (v not visited) {
+							cdp.path.add(e);
+							pq.add(new ComparableDijkstraPath(e.to, e.getWeight(), cdp.path));
+//						}
+					}
+				}
+//			}
+		}
 		
 		return null;
 	}
