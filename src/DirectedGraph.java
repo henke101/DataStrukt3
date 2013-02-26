@@ -7,7 +7,7 @@ public class DirectedGraph<E extends Edge> {
 	protected List<E>[] neighbours;
 	private int nodeAmount;
 	
-	protected class ComparableDijkstraPath<T extends ComparableDijkstraPath> implements Comparable<T> {
+	protected class ComparableDijkstraPath implements Comparable {
 		private int node;
 		protected double cost;
 		private List<E> path;
@@ -21,13 +21,17 @@ public class DirectedGraph<E extends Edge> {
 		}
 		
 		@Override
-		public int compareTo(T obj) throws NullPointerException {
+		public int compareTo(Object obj) throws NullPointerException {
 			if (obj == null) {
 				throw new NullPointerException();
 			}
+			if (!(obj instanceof DirectedGraph.ComparableDijkstraPath)) {
+				throw new IllegalArgumentException();
+			}
+			ComparableDijkstraPath object = (ComparableDijkstraPath) obj;
 			
 			// Returns 0 if equal, 1 if this is greater than the object, -1 if it's smaller
-			return (this.cost == obj.cost) ? 0 : ((this.cost > obj.cost) ? 1 : -1);
+			return (this.cost == object.cost) ? 0 : ((this.cost > object.cost) ? 1 : -1);
 		}
 
 		/**
