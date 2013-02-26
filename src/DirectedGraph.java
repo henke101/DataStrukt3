@@ -79,39 +79,40 @@ public class DirectedGraph<E extends Edge> {
 		
 //		Integer[] distance = new Integer[nodeAmount];
 		
-/*lÃ¤gg (startnod, 0, tom vÃ¤g) i en p-kÃ¶
-while kÃ¶n inte Ã¤r tom
-(nod, cost, path) = fÃ¶rsta elementet i p-kÃ¶n
-if nod ej Ã¤r besÃ¶kt
-if nod Ã¤r slutpunkt returnera vÃ¤g
-else 
-markera nod besÃ¶kt
-for every v on EL(nod)
-if v ej Ã¤r besÃ¶kt
-lÃ¤gg in nytt kÃ¶element 
-fÃ¶r v i p-kÃ¶n
+/*lägg (startnod, 0, tom väg) i en p-kö
+while kön inte är tom
+	(nod, cost, path) = första elementet i p-kön
+	if nod ej är besökt
+		if nod är slutpunkt returnera väg
+		else 
+			markera nod besökt
+			for every v on EL(nod)
+				if v ej är besökt
+					lägg in nytt köelement 
+						för v i p-kön
  * 
  */
+		ArrayList<Boolean> nodeVisited = new ArrayList<Boolean>();
 		PriorityQueue<ComparableDijkstraPath> pq = new PriorityQueue<ComparableDijkstraPath>();
 		pq.add(new ComparableDijkstraPath(from, 0, null));
 		ComparableDijkstraPath cdp;
 		while (!pq.isEmpty()) {
-			cdp = pq.peek();
-//			if (node not visited) {
+			cdp = pq.poll();
+			if (!nodeVisited.get(cdp.node)) {
 				if (cdp.node == to) {
 					return cdp.path.iterator();
 				}
 
 				else {
-//					set node to visited;
+					nodeVisited.set(cdp.node, true);
 					for (E e : neighbours[cdp.node]) {
-//						if (v not visited) {
+						if (!nodeVisited.get(e.to)) {
 							cdp.path.add(e);
 							pq.add(new ComparableDijkstraPath(e.to, e.getWeight(), cdp.path));
-//						}
+						}
 					}
 				}
-//			}
+			}
 		}
 		
 		return null;
