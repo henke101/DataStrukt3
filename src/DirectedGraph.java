@@ -58,15 +58,18 @@ public class DirectedGraph<E extends Edge> {
 	
 	public void addEdge(E e) {
 		List<E> insert;
+		if (e.from >= neighbours.length){
+			throw new ArrayIndexOutOfBoundsException();
+		}
 		if (neighbours[e.from] == null) {
 			insert = new LinkedList<E>();
 			insert.add(e);
 			size++;
 			neighbours[e.from] = insert;
 		} else {
-			List<E> list = neighbours[e.from];
-			if (!list.contains(e)) {
-				list.add(e);
+			insert = neighbours[e.from];
+			if (!insert.contains(e)) {
+				insert.add(e);
 				size++;
 			}
 		}
