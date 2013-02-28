@@ -68,10 +68,8 @@ public class DirectedGraph<E extends Edge> {
 			neighbours[e.from] = insert;
 		} else {
 			insert = neighbours[e.from];
-			if (!insert.contains(e)) {
-				insert.add(e);
-				size++;
-			}
+			insert.add(e);
+			size++;
 		}
 	}
 
@@ -104,6 +102,8 @@ public class DirectedGraph<E extends Edge> {
 	}
 		 
 	public Iterator<E> minimumSpanningTree() {
+		
+		
 		return null;
 	}
 

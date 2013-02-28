@@ -288,6 +288,13 @@ public class ShortRoute extends JFrame implements ActionListener {
 			indata = new Scanner(new File("stops.noBOM.txt"), "UTF-8");
 			while (indata.hasNext()) {
 				String hpl = indata.next().trim();
+				/* =====================
+				try {
+					// convert whatever this file is encoded in to UTF-8, 
+					// kill the exception (can't happen)
+					hpl    = new String(hpl.getBytes(java.nio.charset.Charset.defaultCharset().toString()), "UTF-8");
+				} catch (UnsupportedEncodingException e) {System.exit(0);}
+				======================*/
 				int xco = indata.nextInt();
 				int yco = indata.nextInt();
 				noderna.add(new BusStop(hpl, xco, yco));
@@ -308,7 +315,7 @@ public class ShortRoute extends JFrame implements ActionListener {
 			while ( indata.hasNext() ) {
 				String lineNo = indata.next();
 				int    antal  = indata.nextInt() -1;
-				int    from   = noderna.find( indata.next() ).getNodeNo();
+				int    from   = noderna.find( indata.next() ).getNodeNo(); ///// fixa svenska
 				// hur rita flera linjer mellan 2 noder?
 				// enkel inc fungerar inte
 				// färgen borde vara "äkta" dvs linjefärg

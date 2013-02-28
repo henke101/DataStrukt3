@@ -121,7 +121,7 @@ Valand	180	210
 Varbergsgatan	250	340
 Varmfrontsgatan	0	0
 Vasaplatsen	160	230
-VasaViktoriagatan	140	250
+Vasaviktoriagatan	140	250
 WavrinskysPlats	160	290
 Welandergatan	280	290
 Wieselgrensplatsen	85	115

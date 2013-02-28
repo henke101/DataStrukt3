@@ -70,7 +70,7 @@ Olivedalsgatan	1
 Seminariegatan	1
 Brunnsgatan	1
 Handelshögskolan	2
-VasaViktoriagatan	2
+Vasaviktoriagatan	2
 Vasaplatsen	1
 Grönsakstorget	1
 Domkyrkan	1
@@ -96,7 +96,7 @@ Brunnsparken	2
 Domkyrkan	2
 Grönsakstorget	1
 Vasaplatsen	1
-VasaViktoriagatan	1
+Vasaviktoriagatan	1
 Handelshögskolan	2
 Brunnsgatan	2
 Seminariegatan	1
@@ -122,7 +122,7 @@ Stigbergstorget	2
 Masthuggstorget	2
 Järntorget	2
 Hagakyrkan	2
-VasaViktoriagatan	1
+Vasaviktoriagatan	1
 Vasaplatsen	1
 Valand	1
 Kungsportsplatsen	2
@@ -150,7 +150,7 @@ Brunnsparken	1
 Kungsportsplatsen	1
 Valand	2
 Vasaplatsen	1
-VasaViktoriagatan	1
+Vasaviktoriagatan	1
 Hagakyrkan	1
 Järntorget	2
 Masthuggstorget	2
@@ -667,7 +667,7 @@ Brunnsparken	2
 Domkyrkan	2
 Grönsakstorget	1
 Vasaplatsen	1
-VasaViktoriagatan	1
+Vasaviktoriagatan	1
 Handelshögskolan	2
 Brunnsgatan	1
 Seminariegatan	1
@@ -677,7 +677,7 @@ Olivedalsgatan	1
 Seminariegatan	2
 Brunnsgatan	1
 Handelshögskolan	1
-VasaViktoriagatan	2
+Vasaviktoriagatan	2
 Vasaplatsen	1
 Grönsakstorget	1
 Domkyrkan	1
