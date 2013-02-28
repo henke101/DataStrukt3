@@ -76,39 +76,24 @@ public class DirectedGraph<E extends Edge> {
 	}
 
 	public Iterator<E> shortestPath(int from, int to) {
-		
-//		Integer[] distance = new Integer[nodeAmount];
-		
-/*lägg (startnod, 0, tom väg) i en p-kö
-while kön inte är tom
-	(nod, cost, path) = första elementet i p-kön
-	if nod ej är besökt
-		if nod är slutpunkt returnera väg
-		else 
-			markera nod besökt
-			for every v on EL(nod)
-				if v ej är besökt
-					lägg in nytt köelement 
-						för v i p-kön
- * 
- */
-		ArrayList<Boolean> nodeVisited = new ArrayList<Boolean>();
+		boolean[] nodeVisited = new boolean[nodeAmount];
 		PriorityQueue<ComparableDijkstraPath> pq = new PriorityQueue<ComparableDijkstraPath>();
-		pq.add(new ComparableDijkstraPath(from, 0, null));
+		
+		pq.add(new ComparableDijkstraPath(from, 0, new LinkedList<E>()));
 		ComparableDijkstraPath cdp;
 		while (!pq.isEmpty()) {
 			cdp = pq.poll();
-			if (!nodeVisited.get(cdp.node)) {
+			if (!nodeVisited[cdp.node]) {
 				if (cdp.node == to) {
 					return cdp.path.iterator();
 				}
-
 				else {
-					nodeVisited.set(cdp.node, true);
+					nodeVisited[cdp.node] = true;
 					for (E e : neighbours[cdp.node]) {
-						if (!nodeVisited.get(e.to)) {
-							cdp.path.add(e);
-							pq.add(new ComparableDijkstraPath(e.to, e.getWeight(), cdp.path));
+						if (!nodeVisited[e.to]) {
+							List<E> newPath = new LinkedList<E>(cdp.path); 
+							newPath.add(e);
+							pq.add(new ComparableDijkstraPath(e.to, cdp.cost + e.getWeight(), newPath));
 						}
 					}
 				}
@@ -117,7 +102,7 @@ while kön inte är tom
 		
 		return null;
 	}
-		
+		 
 	public Iterator<E> minimumSpanningTree() {
 		return null;
 	}
